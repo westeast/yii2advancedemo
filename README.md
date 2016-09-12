@@ -52,3 +52,30 @@ environments/            contains environment-based overrides
 tests                    contains various tests for the advanced application
     codeception/         contains tests developed with Codeception PHP Testing Framework
 ```
+NGINX CONFIG 
+-------------
+
+```
+    location ~ \.php$ {
+        root            /home/users/zouxidong/odp31php54/webroot;
+        fastcgi_pass    $php_upstream;
+        fastcgi_index   index.php;
+        include         fastcgi.conf;
+    }
+
+    location / {
+        root /home/users/zouxidong/odp31php54/webroot;
+        index index.php;
+        fastcgi_pass    $php_upstream;
+        include         fastcgi.conf;
+       # rewrite ^/([^/.]*)(/[^\?]*)?((\?.*)?)$ /$1/index.php$2$3 break;
+        if (!-e $request_filename){
+            rewrite ^/(.*) /index.php last;
+        }
+    }
+
+    location ~ ^/(.*)/(favicon.ico|static|css|assert|upload) {
+         root            /home/users/zouxidong/odp31php54/webroot;
+    }
+
+```
