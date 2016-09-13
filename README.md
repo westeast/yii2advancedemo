@@ -57,14 +57,14 @@ NGINX CONFIG
 
 ```
     location ~ \.php$ {
-        root            /home/users/zouxidong/odp31php54/webroot;
+        root            /home/users/yourname/webroot;
         fastcgi_pass    $php_upstream;
         fastcgi_index   index.php;
         include         fastcgi.conf;
     }
 
     location / {
-        root /home/users/zouxidong/odp31php54/webroot;
+        root /home/users/yourname/webroot;
         index index.php;
         fastcgi_pass    $php_upstream;
         include         fastcgi.conf;
@@ -74,8 +74,12 @@ NGINX CONFIG
         }
     }
 
+    location ~ \.js$ {
+        root             /home/users/yourname/webroot;
+    }
+
     location ~ ^/(.*)/(favicon.ico|static|css|assert|upload) {
-         root            /home/users/zouxidong/odp31php54/webroot;
+         root            /home/users/yourname/webroot;
     }
 
 ```
